@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>
+  Centeral Tendency Measures
+</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<p>
+
+# -*- coding: utf-8 -*-
+<br>
+################################################################################
+<br>
+# Author: Nayan Gajjar [Wildest Imagination]
+<br>
+# Version: 1.0
+<br>
+# Maintainer: Nayan Gajjar [Wildest Imagination]
+<br>
+# Email: nayan@wildestimagination.dev
+<br>
+################################################################################
+
+</p>
+
+<h2 style="color:red;"> Means </h2>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># install.packages(&quot;psych&quot;)          # Install psych package</span>
+<span class="hl kwd">library</span><span class="hl std">(</span><span class="hl str">&quot;psych&quot;</span><span class="hl std">)</span>
+
+<span class="hl com"># generate 100 random numbers between 0 and 1000</span>
+<span class="hl std">randomlist</span> <span class="hl kwb">=</span> <span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl std">,</span> <span class="hl kwc">min</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">1000</span><span class="hl std">)</span>
+
+<span class="hl com"># Arithmetic Mean  -------------------------------------------------------------</span>
+<span class="hl std">arithmetic_mean</span> <span class="hl kwb">=</span> <span class="hl kwd">mean</span><span class="hl std">(randomlist)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Arithmetic Mean is.....&quot;</span><span class="hl std">, arithmetic_mean))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Arithmetic Mean is..... 525.728291410487&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Arithmetic mean using manual calculation</span>
+<span class="hl std">arithmetic_mean_manual</span> <span class="hl kwb">=</span> <span class="hl kwd">sum</span><span class="hl std">(randomlist)</span> <span class="hl opt">/</span> <span class="hl kwd">length</span><span class="hl std">(randomlist)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Manual Calculation of Arithmetic Mean is.....&quot;</span><span class="hl std">, arithmetic_mean_manual))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Manual Calculation of Arithmetic Mean is..... 525.728291410487&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Geometric Mean ---------------------------------------------------------------</span>
+<span class="hl std">geometric_mean_psych</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">geometric.mean</span><span class="hl std">(randomlist)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Geometric Mean is.....&quot;</span><span class="hl std">, geometric_mean_psych))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Geometric Mean is..... 434.7343866604&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Geometric mean using manual calculation</span>
+<span class="hl std">geometric_mean_manual</span> <span class="hl kwb">=</span> <span class="hl kwd">exp</span><span class="hl std">(</span><span class="hl kwd">mean</span><span class="hl std">(</span><span class="hl kwd">log</span><span class="hl std">(randomlist)))</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Manual Calculation of Geometric Mean is.....&quot;</span><span class="hl std">, geometric_mean_manual))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Manual Calculation of Geometric Mean is..... 434.7343866604&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Harmonic Mean ----------------------------------------------------------------</span>
+<span class="hl std">harmonic_mean_psych</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">harmonic.mean</span><span class="hl std">(randomlist)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Harmonic Mean is.....&quot;</span><span class="hl std">, harmonic_mean_psych))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Harmonic Mean is..... 328.598360077798&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Harmonic mean manual calculation ---------------------------------------------</span>
+<span class="hl std">harmonic_mean_manual</span> <span class="hl kwb">=</span> <span class="hl kwd">length</span><span class="hl std">(randomlist)</span> <span class="hl opt">/</span> <span class="hl kwd">sum</span><span class="hl std">((randomlist)</span><span class="hl opt">^</span><span class="hl std">(</span><span class="hl opt">-</span><span class="hl num">1</span><span class="hl std">))</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Manual Calculation of Harmonic Mean is.....&quot;</span><span class="hl std">, harmonic_mean_manual))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Manual Calculation of Harmonic Mean is..... 328.598360077798&quot;
+</pre></div>
+</div></div>
+
+<h2 style="color:red;"> Median </h2>
+
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># generate 10 random numbers between 0 and 10</span>
+<span class="hl std">randomlist_even</span> <span class="hl kwb">=</span> <span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">10</span><span class="hl std">,</span> <span class="hl kwc">min</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">10</span><span class="hl std">)</span>
+
+<span class="hl com"># generate 9 random numbers between 0 and 10</span>
+<span class="hl std">randomlist_odd</span> <span class="hl kwb">=</span> <span class="hl kwd">runif</span><span class="hl std">(</span><span class="hl num">10</span><span class="hl std">,</span> <span class="hl kwc">min</span><span class="hl std">=</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl kwc">max</span><span class="hl std">=</span><span class="hl num">10</span><span class="hl std">)</span>
+
+<span class="hl com"># Median  ----------------------------------------------------------------------</span>
+<span class="hl std">even_median</span> <span class="hl kwb">=</span> <span class="hl kwd">median</span><span class="hl std">(randomlist_even)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Median of even numbers is.....&quot;</span><span class="hl std">, even_median))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Median of even numbers is..... 5.32968484098092&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">odd_median</span> <span class="hl kwb">=</span> <span class="hl kwd">median</span><span class="hl std">(randomlist_odd)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Median of odd numbers is.....&quot;</span><span class="hl std">, odd_median))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Median of odd numbers is..... 5.83721683593467&quot;
+</pre></div>
+</div></div>
+
+<h2 style="color:red;"> Mode </h2>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># list</span>
+<span class="hl std">randomlist</span> <span class="hl kwb">=</span> <span class="hl kwd">list</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl num">2</span><span class="hl std">,</span> <span class="hl num">3</span><span class="hl std">,</span> <span class="hl num">3</span><span class="hl std">,</span> <span class="hl num">4</span><span class="hl std">,</span> <span class="hl num">4</span><span class="hl std">,</span> <span class="hl num">4</span><span class="hl std">,</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">5</span><span class="hl std">,</span> <span class="hl num">6</span><span class="hl std">)</span>
+
+<span class="hl com"># categorical data</span>
+<span class="hl std">cat_data</span> <span class="hl kwb">=</span> <span class="hl kwd">list</span><span class="hl std">(</span><span class="hl str">&quot;few&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;few&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;many&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;some&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;many&quot;</span><span class="hl std">)</span>
+
+<span class="hl com"># There is no inbuilt function</span>
+<span class="hl std">getmode</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">v</span><span class="hl std">) {</span>
+  <span class="hl std">uniqv</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">unique</span><span class="hl std">(v)</span>
+  <span class="hl std">uniqv[</span><span class="hl kwd">which.max</span><span class="hl std">(</span><span class="hl kwd">tabulate</span><span class="hl std">(</span><span class="hl kwd">match</span><span class="hl std">(v, uniqv)))]</span>
+<span class="hl std">}</span>
+
+<span class="hl std">mode_randomlist</span> <span class="hl kwb">=</span> <span class="hl kwd">getmode</span><span class="hl std">(randomlist)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mode of numbers is.....&quot;</span><span class="hl std">, mode_randomlist))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Mode of numbers is..... 4&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># It will return &quot;few&quot; only instead of &quot;few&quot; and &quot;many&quot;</span>
+<span class="hl std">mode_cat_data</span> <span class="hl kwb">=</span> <span class="hl kwd">getmode</span><span class="hl std">(cat_data)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mode of categorical data is.....&quot;</span><span class="hl std">, mode_cat_data))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Mode of categorical data is..... few&quot;
+</pre></div>
+</div></div>
+
+<h2 style="color:red;"> Read The DataFrame </h2>
+
+<p>
+    Read the dataframe available at below URL, at the bottom of the page.
+    <br>
+    <a target="_blank" href=https://wildestimagination.dev/blog/measures-of-central-tendency/>Wildest Imagination</a>
+</p>
+
+<div class="chunk" id="unnamed-chunk-4"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">library</span><span class="hl std">(openxlsx)</span>
+
+<span class="hl std">df</span> <span class="hl kwb">=</span> <span class="hl std">openxlsx</span><span class="hl opt">::</span><span class="hl kwd">read.xlsx</span><span class="hl std">(</span><span class="hl str">&quot;..\\Descriptive_Statistics.xlsx&quot;</span><span class="hl std">,</span> <span class="hl kwc">rows</span> <span class="hl std">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">101</span><span class="hl std">),</span> <span class="hl kwc">check.names</span> <span class="hl std">=</span> <span class="hl num">FALSE</span><span class="hl std">)</span>
+<span class="hl std">df</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##     Student.Sr..No. Mathematics English
+## 1                 1          42      84
+## 2                 2          55      82
+## 3                 3          43      84
+## 4                 4          42      80
+## 5                 5          76      75
+## 6                 6          51      76
+## 7                 7          23      76
+## 8                 8          60      86
+## 9                 9          70      79
+## 10               10          55      81
+## 11               11          54      83
+## 12               12          57      77
+## 13               13          64      80
+## 14               14          39      79
+## 15               15          66      76
+## 16               16          48      77
+## 17               17          41      81
+## 18               18          52      80
+## 19               19          39      82
+## 20               20          67      83
+## 21               21          46      83
+## 22               22          53      83
+## 23               23          40      79
+## 24               24          43      76
+## 25               25          62      76
+## 26               26          67      83
+## 27               27          59      79
+## 28               28          49      83
+## 29               29          58      79
+## 30               30          50      83
+## 31               31          52      81
+## 32               32          56      77
+## 33               33          45      82
+## 34               34          67      81
+## 35               35          35      80
+## 36               36          31      82
+## 37               37          46      77
+## 38               38          48      81
+## 39               39          44      79
+## 40               40          41      77
+## 41               41          53      76
+## 42               42          40      79
+## 43               43          47      80
+## 44               44          43      81
+## 45               45          42      79
+## 46               46          38      77
+## 47               47          60      86
+## 48               48          47      76
+## 49               49          49      76
+## 50               50          45      80
+## 51               51          48      78
+## 52               52          46      83
+## 53               53          50      79
+## 54               54          63      81
+## 55               55          41      80
+## 56               56          37      82
+## 57               57          21      84
+## 58               58          57      82
+## 59               59          43      81
+## 60               60          51      79
+## 61               61          59      88
+## 62               62          42      82
+## 63               63          70      74
+## 64               64          42      85
+## 65               65          57      77
+## 66               66          65      80
+## 67               67          54      79
+## 68               68          62      82
+## 69               69          56      77
+## 70               70          58      75
+## 71               71          50      76
+## 72               72          43      83
+## 73               73          49      79
+## 74               74          67      84
+## 75               75          36      78
+## 76               76          32      79
+## 77               77          35      80
+## 78               78          52      76
+## 79               79          63      81
+## 80               80          41      78
+## 81               81          34      87
+## 82               82          45      80
+## 83               83          61      80
+## 84               84          66      82
+## 85               85          36      80
+## 86               86          66      80
+## 87               87          61      82
+## 88               88          58      87
+## 89               89          57      74
+## 90               90          50      77
+## 91               91          34      81
+## 92               92          46      82
+## 93               93          27      78
+## 94               94          55      79
+## 95               95          50      83
+## 96               96          54      81
+## 97               97          47      77
+## 98               98          47      81
+## 99               99          59      75
+## 100             100          50      80
+</pre></div>
+</div></div>
+
+<h4 style="color:blue;"> Meaures of Central Tendency for Mathematics subject </h4>
+
+<div class="chunk" id="unnamed-chunk-5"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Arithmetic Mean...............................................................</span>
+<span class="hl std">maths_arithmetic</span> <span class="hl kwb">=</span> <span class="hl kwd">mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">Mathematics)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Arithmetic Mean of Mathemtics Subject is.....&quot;</span><span class="hl std">,maths_arithmetic))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Arithmetic Mean of Mathemtics Subject is..... 49.93&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Geometric Mean...............................................................</span>
+<span class="hl std">maths_geometric</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">geometric.mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">Mathematics)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Geometric Mean of Mathemtics Subject is.....&quot;</span><span class="hl std">,maths_geometric))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Geometric Mean of Mathemtics Subject is..... 48.6533476218762&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Harmonic Mean...............................................................</span>
+<span class="hl std">maths_harmonic</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">harmonic.mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">Mathematics)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Harmonic Mean of Mathemtics Subject is.....&quot;</span><span class="hl std">,maths_harmonic))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Harmonic Mean of Mathemtics Subject is..... 47.2347885031963&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Median...............................................................</span>
+<span class="hl std">maths_median</span> <span class="hl kwb">=</span> <span class="hl kwd">median</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">Mathematics)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Median of Mathemtics Subject is.....&quot;</span><span class="hl std">,maths_median))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Median of Mathemtics Subject is..... 50&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Mode...............................................................</span>
+<span class="hl std">maths_mode</span> <span class="hl kwb">=</span> <span class="hl kwd">getmode</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">Mathematics)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mode of Mathemtics Subject is.....&quot;</span><span class="hl std">,maths_mode))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Mode of Mathemtics Subject is..... 50&quot;
+</pre></div>
+</div></div>
+
+<h4 style="color:blue;"> Meaures of Central Tendency for English subject </h4>
+
+<div class="chunk" id="unnamed-chunk-6"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com"># Arithmetic Mean...............................................................</span>
+<span class="hl std">english_arithmetic</span> <span class="hl kwb">=</span> <span class="hl kwd">mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">English)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Arithmetic Mean of English Subject is.....&quot;</span><span class="hl std">,english_arithmetic))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Arithmetic Mean of English Subject is..... 80&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Geometric Mean...............................................................</span>
+<span class="hl std">english_geometric</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">geometric.mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">English)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Geometric Mean of English Subject is.....&quot;</span><span class="hl std">,english_geometric))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Geometric Mean of English Subject is..... 79.9442358905489&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Harmonic Mean...............................................................</span>
+<span class="hl std">english_harmonic</span> <span class="hl kwb">=</span> <span class="hl std">psych</span><span class="hl opt">::</span><span class="hl kwd">harmonic.mean</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">English)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Harmonic Mean of English Subject is.....&quot;</span><span class="hl std">,english_harmonic))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Harmonic Mean of English Subject is..... 79.8887008317529&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Median...............................................................</span>
+<span class="hl std">english_median</span> <span class="hl kwb">=</span> <span class="hl kwd">median</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">English)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Median of English Subject is.....&quot;</span><span class="hl std">,english_median))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Median of English Subject is..... 80&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl com"># Mode...............................................................</span>
+<span class="hl std">english_mode</span> <span class="hl kwb">=</span> <span class="hl kwd">getmode</span><span class="hl std">(df</span><span class="hl opt">$</span><span class="hl std">English)</span>
+<span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;Mode of English Subject is.....&quot;</span><span class="hl std">,english_mode))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Mode of English Subject is..... 80&quot;
+</pre></div>
+</div></div>
+
+</body>
+</html>
